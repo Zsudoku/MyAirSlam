@@ -1,4 +1,5 @@
-<h1 align="center">基于AirSLam的视觉空间定位算法</h1>
+<h1 align="center">基于AirSLam的视觉空间定位算法---源于AirSlam</h1>
+<a href = "https://github.com/sair-lab/AirSLAM">
 
 <h1 align="center">AirSLAM: An Efficient and Illumination-Robust Point-Line Visual SLAM System</h1>
 
