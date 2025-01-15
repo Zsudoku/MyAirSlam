@@ -535,7 +535,7 @@ bool MapUser::Relocalization(std::string image_id ,cv::Mat& image, Eigen::Matrix
     // 创建ofstream对象以写入模式打开文件
     std::ofstream outFile;
     // 打开名为"example.txt"的文件
-    outFile.open("/home/jg/1_CODE/Air_slam/example.txt",std::ios::app);
+    outFile.open("/workspace/catkin/src/AirSlam/my_output/example.txt",std::ios::app);
 
     // 检查文件是否成功打开
     if (outFile.is_open()) {
