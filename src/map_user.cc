@@ -535,19 +535,19 @@ bool MapUser::Relocalization(std::string image_id ,cv::Mat& image, Eigen::Matrix
     // 创建ofstream对象以写入模式打开文件
     std::ofstream outFile;
     // 打开名为"example.txt"的文件
-    outFile.open("/workspace/catkin/src/AirSlam/my_output/example.txt",std::ios::app);
+    outFile.open("/my_workspace/SlamDemo_0116/SlamDemo_0116/SlamDemo_Data/StreamingAssets/CamTrans.txt");
 
     // 检查文件是否成功打开
     if (outFile.is_open()) {
         // 写入数据到文件
-        outFile << image_id << ","
-              << result.translation.transpose()[0]<<","
-              << result.translation.transpose()[1]<<","
-              << result.translation.transpose()[2]<<","
-              << result.quaternion.w() << "," 
-              << result.quaternion.x() << ","
-              << result.quaternion.y() << ","
-              << result.quaternion.z() << std::endl;
+        // outFile << image_id << ","
+        outFile << result.translation.transpose()[0]<<","
+          << result.translation.transpose()[1]<<","
+          << result.translation.transpose()[2]<<","
+          << result.quaternion.x() << ","
+          << result.quaternion.y() << ","
+          << result.quaternion.z() << ","
+          << result.quaternion.w() << std::endl;
 
         // 关闭文件
         outFile.close();
