@@ -3,6 +3,7 @@
 #include <assert.h>
 #include <iostream> 
 #include <Eigen/Core> 
+#include <Eigen/Dense>
 #include <Eigen/Geometry> 
 #include <opencv2/core/eigen.hpp>
 #include <boost/serialization/serialization.hpp>
@@ -22,8 +23,6 @@
 #include "debug.h"
 #include "map_user.h"
 
-//zlx code
-#include <Eigen/Dense>
 
 struct Transform {
     Eigen::Quaterniond quaternion; // 四元数
@@ -43,30 +42,6 @@ Transform decomposeTransformMatrix(const Eigen::Matrix4d& matrix) {
     return result;
 }
 
-// int main() {
-//     // 示例4x4旋转平移矩阵
-//     Eigen::Matrix4d transformMatrix;
-//     transformMatrix << 0.866, -0.5, 0.0, 1.0,
-//                        0.5, 0.866, 0.0, 2.0,
-//                        0.0,  0.0,  1.0, 3.0,
-//                        0.0,  0.0,  0.0, 1.0;
-
-//     Transform result = decomposeTransformMatrix(transformMatrix);
-
-//     // 输出四元数
-//     std::cout << "Quaternion: " 
-//               << result.quaternion.w() << " " 
-//               << result.quaternion.x() << " "
-//               << result.quaternion.y() << " "
-//               << result.quaternion.z() << std::endl;
-
-//     // 输出平移向量
-//     std::cout << "Translation: " << result.translation.transpose() << std::endl;
-
-//     return 0;
-// }
-
-//zlx end
 MapUser::MapUser(){
 }
 
@@ -540,14 +515,43 @@ bool MapUser::Relocalization(std::string image_id ,cv::Mat& image, Eigen::Matrix
     // 检查文件是否成功打开
     if (outFile.is_open()) {
         // 写入数据到文件
+        //my_airslam
         // outFile << image_id << ","
-        outFile << result.translation.transpose()[0]<<","
-          << result.translation.transpose()[1]<<","
-          << result.translation.transpose()[2]<<","
-          << result.quaternion.x() << ","
-          << result.quaternion.y() << ","
-          << result.quaternion.z() << ","
-          << result.quaternion.w() << std::endl;
+            // 平移向量
+
+    Eigen::Quaterniond original_quaternion(result.quaternion.w(), result.quaternion.x(), result.quaternion.y(), result.quaternion.z()); // 这里可以替换成你的原始四元数
+    Eigen::Vector3d original_point(result.translation.transpose()[0], result.translation.transpose()[1], result.translation.transpose()[2]);
+    // 绕Y轴旋转90度的旋转矩阵
+    Eigen::Matrix3d rotation_matrix;
+    rotation_matrix << 1, 0, 0,
+                       0, 1, 0,
+                       0, 0, 1;
+
+    // 计算新的坐标
+    Eigen::Vector3d new_point = rotation_matrix * original_point;
+
+
+    // 将旋转矩阵转为四元数
+    Eigen::Quaterniond rotation_quaternion(rotation_matrix);
+
+    // 计算新的四元数
+    Eigen::Quaterniond new_quaternion = rotation_quaternion * original_quaternion;
+
+        outFile << new_point[0]<<","
+          << new_point[1]<<","
+          << new_point[2]<<","
+          << new_quaternion.x() << ","
+          << new_quaternion.y() << ","
+          << new_quaternion.z() << ","
+          << new_quaternion.w() << std::endl;
+
+        // outFile << result.translation.transpose()[0]<<","
+        //   << result.translation.transpose()[1]<<","
+        //   << result.translation.transpose()[2]<<","
+        //   << result.quaternion.x() << ","
+        //   << result.quaternion.y() << ","
+        //   << result.quaternion.z() << ","
+        //   << result.quaternion.w() << std::endl;
 
         // 关闭文件
         outFile.close();
