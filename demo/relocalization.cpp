@@ -29,9 +29,9 @@ int main(int argc, char **argv) {
   RelocalizationConfigs configs(config_path, model_dir);
   ros::param::get("~dataroot", configs.dataroot);
   ros::param::get("~camera_config_path", configs.camera_config_path);
-  // std::ofstream outFile;
-  // outFile.open("/my_workspace/catkin_ws/src/AirSlam/my_output/example.txt");
-  // outFile.close();
+  std::ofstream outFile;
+  outFile.open("/my_workspace/SlamDemo_0116/SlamDemo_0116/SlamDemo_Data/StreamingAssets/CamTrans.txt");
+  outFile.close();
 
   MapUser map_user(configs, nh);
   map_user.LoadMap(map_root);
@@ -70,10 +70,11 @@ int main(int argc, char **argv) {
       std::cout << "Processed " << image_path << " in " << cost_time << " ms." << std::endl;
 
       trajectory.emplace_back(std::make_pair(image_idx, pose));
+      // std::cout<<pose<<std::endl;
     }
 
     // // 保存轨迹
-    // SaveTumTrajectoryToFile(traj_path, trajectory);
+    SaveTumTrajectoryToFile(traj_path, trajectory);
 
     std::this_thread::sleep_for(std::chrono::milliseconds(10)); // 每隔0.15秒检查一次新图片
   }
