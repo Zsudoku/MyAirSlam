@@ -495,57 +495,59 @@ bool MapUser::Relocalization(std::string image_id ,cv::Mat& image, Eigen::Matrix
     }
     //zlx code start
     // std::cout<<"pose:"<<pose<<std::endl;
-    Transform result = decomposeTransformMatrix(pose);
+    // Transform result = decomposeTransformMatrix(pose);
 
     // 输出四元数
-    std::cout << "Quaternion: " 
-              << result.quaternion.w() << " " 
-              << result.quaternion.x() << " "
-              << result.quaternion.y() << " "
-              << result.quaternion.z() << std::endl;
+    // std::cout << "Quaternion: " 
+    //           << result.quaternion.w() << " " 
+    //           << result.quaternion.x() << " "
+    //           << result.quaternion.y() << " "
+    //           << result.quaternion.z() << std::endl;
 
-    // 输出平移向量
-    std::cout << "Translation: " << result.translation.transpose() << std::endl;
+    // // 输出平移向量
+    // std::cout << "Translation: " << result.translation.transpose() << std::endl;
 
     // 创建ofstream对象以写入模式打开文件
     std::ofstream outFile;
     // 打开名为"example.txt"的文件
-    outFile.open("/my_workspace/SlamDemo_0116/SlamDemo_0116/SlamDemo_Data/StreamingAssets/CamTrans.txt");
+    // outFile.open("/my_workspace/SlamDemo_0116/SlamDemo_0116/SlamDemo_Data/StreamingAssets/CamTrans.txt",std::ios::app);
 
-    // 检查文件是否成功打开
-    if (outFile.is_open()) {
+    // // 检查文件是否成功打开
+    // if (outFile.is_open()) {
         // 写入数据到文件
         //my_airslam
         // outFile << image_id << ","
             // 平移向量
 
-    Eigen::Quaterniond original_quaternion(result.quaternion.w(), result.quaternion.x(), result.quaternion.y(), result.quaternion.z()); // 这里可以替换成你的原始四元数
-    Eigen::Vector3d original_point(result.translation.transpose()[0], result.translation.transpose()[1], result.translation.transpose()[2]);
-    // 绕Y轴旋转90度的旋转矩阵
-    Eigen::Matrix3d rotation_matrix;
-    rotation_matrix << 1, 0, 0,
-                       0, 1, 0,
-                       0, 0, 1;
+    // Eigen::Quaterniond original_quaternion(result.quaternion.w(), result.quaternion.x(), result.quaternion.y(), result.quaternion.z()); // 这里可以替换成你的原始四元数
+    // Eigen::Vector3d original_point(result.translation.transpose()[0], result.translation.transpose()[1], result.translation.transpose()[2]);
+    // // 绕Y轴旋转90度的旋转矩阵
+    // Eigen::Matrix3d rotation_matrix;
+    // rotation_matrix << 1, 0, 0,
+    //                    0, 1, 0,
+    //                    0, 0, 1;
 
-    // 计算新的坐标
-    Eigen::Vector3d new_point = rotation_matrix * original_point;
+    // // 计算新的坐标
+    // Eigen::Vector3d new_point = rotation_matrix * original_point;
 
 
-    // 将旋转矩阵转为四元数
-    Eigen::Quaterniond rotation_quaternion(rotation_matrix);
+    // // 将旋转矩阵转为四元数
+    // Eigen::Quaterniond rotation_quaternion(rotation_matrix);
 
-    // 计算新的四元数
-    Eigen::Quaterniond new_quaternion = rotation_quaternion * original_quaternion;
+    // // 计算新的四元数
+    // Eigen::Quaterniond new_quaternion = rotation_quaternion * original_quaternion;
 
-        outFile << new_point[0]<<","
-          << new_point[1]<<","
-          << new_point[2]<<","
-          << new_quaternion.x() << ","
-          << new_quaternion.y() << ","
-          << new_quaternion.z() << ","
-          << new_quaternion.w() << std::endl;
+        // outFile <<image_id<<","
+        // << new_point[0]<<","
+        //   << new_point[1]<<","
+        //   << new_point[2]<<","
+        //   << new_quaternion.x() << ","
+        //   << new_quaternion.y() << ","
+        //   << new_quaternion.z() << ","
+        //   << new_quaternion.w() << std::endl;
 
-        // outFile << result.translation.transpose()[0]<<","
+        // outFile <<image_id<<","
+        //   << result.translation.transpose()[0]<<","
         //   << result.translation.transpose()[1]<<","
         //   << result.translation.transpose()[2]<<","
         //   << result.quaternion.x() << ","
@@ -553,14 +555,14 @@ bool MapUser::Relocalization(std::string image_id ,cv::Mat& image, Eigen::Matrix
         //   << result.quaternion.z() << ","
         //   << result.quaternion.w() << std::endl;
 
-        // 关闭文件
-        outFile.close();
+        // // 关闭文件
+        // outFile.close();
 
         //std::cout << "Data written successfully." << std::endl;
-    } else {
-          // 如果文件未能打开，则输出错误信息
-          std::cerr << "Unable to open file." << std::endl;
-    }
+    // } else {
+    //       // 如果文件未能打开，则输出错误信息
+    //       std::cerr << "Unable to open file." << std::endl;
+    // }
 
     //zlx code end
     _ros_publisher->PublishFramePose(frame_pose_message);
