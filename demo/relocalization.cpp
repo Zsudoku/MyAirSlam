@@ -76,7 +76,7 @@ int main(int argc, char **argv) {
     // // 保存轨迹
     SaveTumTrajectoryToFile(traj_path, trajectory);
 
-    std::this_thread::sleep_for(std::chrono::milliseconds(10)); // 每隔0.15秒检查一次新图片
+    std::this_thread::sleep_for(std::chrono::milliseconds(5)); // 每隔0.15秒检查一次新图片
   }
 
   map_user.StopVisualization();
