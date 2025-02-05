@@ -154,6 +154,9 @@ int Frame::AddRightFeatures(Eigen::Matrix<float, 259, Eigen::Dynamic>& features_
     if(dx > min_x_diff && dx < max_x_diff && dy <= max_y_diff){
       matches.emplace_back(match);
     }
+    // else{
+    //   std::cout<<dx<<","<<dy<<","<<min_x_diff<<","<<max_x_diff<<std::endl;
+    // }
   }
 
   // Triangulate stereo points

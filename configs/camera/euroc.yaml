@@ -6,7 +6,7 @@ use_imu: 0
 
 depth_lower_thr: 0.1
 depth_upper_thr: 10.0
-max_y_diff: 1
+max_y_diff: 10
 
 # Calibration
 distortion_type: 1  # 0 for undistorted inputs, 1 for radial-tangential: [k1, k2, p1, p2, k3], 2 for equidistant/fisheye:  [k1, k2, k3, k4, 0].

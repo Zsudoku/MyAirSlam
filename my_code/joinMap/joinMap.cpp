@@ -132,8 +132,8 @@ void savePointCloud(const vector<Point3d> &points, const string &filename) {
 
 int main() {
     string poseFile = "/my_workspace/catkin_ws/src/AirSlam/debug/relocalization.txt";  // 替换为实际文件路径
-    string colorFolder = "/my_workspace/catkin_ws/src/AirSlam/dataroot/room/cam1/data";    // 替换为实际文件夹路径
-    string depthFolder = "/my_workspace/catkin_ws/src/AirSlam/dataroot/room/depth";    // 替换为实际文件夹路径
+    string colorFolder = "/my_workspace/catkin_ws/src/AirSlam/dataroot/room2/cam1/data";    // 替换为实际文件夹路径
+    string depthFolder = "/my_workspace/catkin_ws/src/AirSlam/dataroot/room2/depth";    // 替换为实际文件夹路径
 
     vector<string> imageNames;
     vector<Vector3d> translations;

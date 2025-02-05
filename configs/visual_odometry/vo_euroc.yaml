@@ -17,7 +17,7 @@ keyframe:
   min_init_stereo_feature: 30
   lost_num_match: 10
   min_num_match: 30
-  max_num_match: 80
+  max_num_match: 50
   tracking_point_rate: 0.7
   tracking_parallax_rate: 0.1
 
@@ -27,13 +27,13 @@ optimization:
     stereo_point: 75
     mono_line: 50
     stereo_line: 75
-    rate: 0.5
+    rate: 0.1
   backend:
     mono_point: 50
     stereo_point: 75
     mono_line: 50
     stereo_line: 75
-    rate: 0.5
+    rate: 0.1
 
 ros_publisher:
   feature: 1
