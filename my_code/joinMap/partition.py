@@ -46,4 +46,4 @@ output_left_folder = 'path_to_output_left_folder'  # 输出左图像的文件夹
 output_right_folder = 'path_to_output_right_folder'  # 输出右图像的文件夹路径
 
 # 执行函数
-split_stereo_images('/home/jg/图片/双目/0110/map2', '/home/jg/图片/双目/0110/map2_left', '/home/jg/图片/双目/0110/map2_right')
+split_stereo_images("C:/Users/JG/Pictures/room/room", 'C:/Users/JG/Pictures/room/left', 'C:/Users/JG/Pictures/room/right')

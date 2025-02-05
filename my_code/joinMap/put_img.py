@@ -38,8 +38,8 @@ def move_images_by_timestamp(src_folder, dst_folder, interval=1):
 
 if __name__ == "__main__":
     # 设置源文件夹和目标文件夹路径
-    source_folder = "/my_workspace/catkin_ws/src/AirSlam/dataroot/room/cam1/data"
+    source_folder = "/my_workspace/catkin_ws/src/AirSlam/dataroot/room2/cam1/data"
     destination_folder = "/my_workspace/catkin_ws/src/AirSlam/dataroot/test"
     print("start move")
     # 调用函数
-    move_images_by_timestamp(source_folder, destination_folder, interval=0.25)
+    move_images_by_timestamp(source_folder, destination_folder, interval=0.1)
