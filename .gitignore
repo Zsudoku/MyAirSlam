@@ -3,3 +3,6 @@
 /my_output
 /debug
 /my_code/joinMap/*.pcd
+/my_output_robot_room
+*.pcd
+*.LiData

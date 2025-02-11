@@ -43,3 +43,6 @@ if __name__ == "__main__":
     print("start move")
     # 调用函数
     move_images_by_timestamp(source_folder, destination_folder, interval=0.1)
+
+
+
