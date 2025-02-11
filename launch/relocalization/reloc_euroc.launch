@@ -1,7 +1,8 @@
 <launch>
     <arg name="config_path" default = "$(find air_slam)/configs/relocalization/reloc_euroc.yaml" />
-    <arg name="dataroot" default = "$(find air_slam)/dataroot/test" />
-    <arg name="camera_config_path" default = "$(find air_slam)/configs/camera/euroc.yaml" />
+    <!-- <arg name="dataroot" default = "$(find air_slam)/dataroot/0210_factory_2/cam0/data" /> -->
+    <arg name="dataroot" default = "D:/video_dataset/factory_03/left" />
+    <arg name="camera_config_path" default = "$(find air_slam)/configs/camera/euroc_720_2.yaml" />
     <arg name="model_dir" default = "$(find air_slam)/output" />
     <arg name="traj_path" default = "$(find air_slam)/debug/relocalization.txt" />
     <arg name="voc_path" default = "$(find air_slam)/voc/point_voc_L4.bin" />

@@ -27,13 +27,13 @@ optimization:
     stereo_point: 75
     mono_line: 50
     stereo_line: 75
-    rate: 0.1
+    rate: 0.5
   backend:
     mono_point: 50
     stereo_point: 75
     mono_line: 50
     stereo_line: 75
-    rate: 0.1
+    rate: 0.5
 
 ros_publisher:
   feature: 1
